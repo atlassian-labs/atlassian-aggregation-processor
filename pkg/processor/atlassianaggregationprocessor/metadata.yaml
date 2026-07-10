@@ -1,0 +1,9 @@
+type: atlassian_aggregation
+
+status:
+  class: processor
+  stability:
+    alpha: [metrics]
+  warnings: [Statefulness]
+tests:
+  config:

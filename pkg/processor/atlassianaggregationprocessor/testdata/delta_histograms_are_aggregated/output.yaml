@@ -1,0 +1,90 @@
+resourceMetrics:
+  - resource:
+      attributes:
+        - key: deployment.environment
+          value:
+            stringValue: prod-east
+        - key: perimeter
+          value:
+            stringValue: commercial
+        - key: service.name
+          value:
+            stringValue: default-service
+    schemaUrl: https://opentelemetry.io/schemas/1.26.0
+    scopeMetrics:
+      - metrics:
+          - description: Duration of HTTP client requests.
+            name: http.client.request.duration
+            unit: s
+            histogram:
+              aggregationTemporality: 1
+              dataPoints:
+                - attributes:
+                    - key: http.response.status_code
+                      value:
+                        intValue: 200
+                    - key: http.request.method
+                      value:
+                        stringValue: GET
+                  bucketCounts: [1, 1, 0, 0]
+                  count: "2"
+                  explicitBounds: [0.01, 0.05, 0.1, 0.5]
+                  max: 4
+                  min: 1
+                  startTimeUnixNano: "1000000"
+                  sum: 5
+                  timeUnixNano: "2000000"
+        scope:
+          name: go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp
+          version: 0.61.0
+      - metrics:
+          - description: The time taken to process a request.
+            histogram:
+              aggregationTemporality: 1
+              dataPoints:
+                # Histogram #1
+                - attributes:
+                    - key: http.response.status_code
+                      value:
+                        intValue: 200
+                  bucketCounts: [0, 0, 1, 0, 2, 5]
+                  count: "8"
+                  explicitBounds: [0.01, 0.05, 0.1, 0.5, 1, 2]
+                  max: 2
+                  min: 0.1
+                  startTimeUnixNano: "1000000"
+                  sum: 5
+                  timeUnixNano: "2000005"
+
+                # Histogram #2
+                - attributes:
+                    - key: http.response.status_code
+                      value:
+                        intValue: 400
+                  bucketCounts: [2, 1, 1, 1]
+                  count: "5"
+                  explicitBounds: [1, 10, 100, 1000]
+                  max: 1000
+                  min: 1
+                  startTimeUnixNano: "10"
+                  sum: 1112
+                  timeUnixNano: "600"
+
+                # Histogram #3
+                - attributes:
+                    - key: http.response.status_code
+                      value:
+                        intValue: 204
+                    - key: http.route
+                      value:
+                        stringValue: /api/v2/samplingRate
+                  bucketCounts: [0, 0, 1]
+                  count: "1"
+                  explicitBounds: [1, 5, 10]
+                  max: 10
+                  min: 10
+                  startTimeUnixNano: "1000000"
+                  sum: 1
+                  timeUnixNano: "2000000"
+            name: otelcol_api_sampling.request
+            unit: s

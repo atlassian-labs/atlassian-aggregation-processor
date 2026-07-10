@@ -1,0 +1,4 @@
+.idea/
+/tools/
+test-reports/
+**/coverage.out

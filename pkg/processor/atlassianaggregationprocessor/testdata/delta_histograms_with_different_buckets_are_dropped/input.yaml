@@ -1,0 +1,60 @@
+resourceMetrics:
+  - schemaUrl: https://test-res-schema.com/schema
+    resource:
+      attributes:
+        - key: asdf
+          value:
+            stringValue: foo
+    scopeMetrics:
+      - schemaUrl: https://test-scope-schema.com/schema
+        scope:
+          name: MyTestInstrument
+          version: "1.2.3"
+          attributes:
+            - key: foo
+              value:
+                stringValue: bar
+        metrics:
+          - name: cumulative.histogram.test
+            histogram:
+              aggregationTemporality: 1
+              dataPoints:
+                - timeUnixNano: 20
+                  explicitBounds: [0.01, 0.1, 1, 10, 100]
+                  bucketCounts: [1, 1, 1, 1, 1]
+                  attributes:
+                    - key: aaa
+                      value:
+                        stringValue: bbb
+                - timeUnixNano: 50
+                  explicitBounds: [0.01, 0.1, 1, 10, 100]
+                  bucketCounts: [2, 3, 4, 5, 6]
+                  attributes:
+                    - key: aaa
+                      value:
+                        stringValue: bbb
+
+                # As buckets changed, the new data points are aggregated separately.
+                - timeUnixNano: 80
+                  explicitBounds: [1, 10, 100]
+                  bucketCounts: [0, 0, 1]
+                  attributes:
+                    - key: aaa
+                      value:
+                        stringValue: bbb
+                - timeUnixNano: 90
+                  explicitBounds: [1, 10, 100]
+                  bucketCounts: [1, 1, 1]
+                  attributes:
+                    - key: aaa
+                      value:
+                        stringValue: bbb
+
+                # First again with earliset timestamp, should be dropped
+                - timeUnixNano: 30
+                  explicitBounds: [0.01, 0.1, 1, 10, 100]
+                  bucketCounts: [ 1, 1, 1, 1, 1 ]
+                  attributes:
+                    - key: aaa
+                      value:
+                        stringValue: bbb
