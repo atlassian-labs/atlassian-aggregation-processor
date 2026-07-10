@@ -1,7 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-// This file is copied from github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics at v0.149.0.
+//This is copied from internal/exp/metrics of the contrib repo v0.149.0.
 
 package identity
 

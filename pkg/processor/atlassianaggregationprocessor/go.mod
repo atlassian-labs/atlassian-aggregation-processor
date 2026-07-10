@@ -3,7 +3,7 @@ module github.com/atlassian-labs/atlassian-aggregation-processor/pkg/processor/a
 go 1.26.4
 
 require (
-	github.com/atlassian-labs/atlassian-aggregation-processor/internal/pmetricutil v0.0.0
+	github.com/atlassian-labs/atlassian-aggregation-processor/internal/pmetricutil v0.0.0-00010101000000-000000000000
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/golden v0.154.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest v0.154.0
 	github.com/stretchr/testify v1.11.1
