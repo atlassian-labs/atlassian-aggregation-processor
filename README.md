@@ -34,7 +34,4 @@ Contributions to the Atlassian Aggregation Processor are welcome! Please see [CO
 
 ## License
 
-Copyright (c) 2026 Atlassian US., Inc.
-Apache 2.0 licensed, see [LICENSE](LICENSE) file.
-
-<br/>
+Apache-2.0 License. See [LICENSE](./LICENSE).
